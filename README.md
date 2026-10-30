@@ -91,13 +91,13 @@ Choose an option from the following:
   - **Message with Counting**: Sends messages with a counting mechanism (e.g., "Message 1", "Message 2").
   - **Random Message Generator**: Sends randomly generated words of sentence as message.
   - **Meaningless Message Generator**: Sends random, nonsensical words of sentence as message.
+- **Message Delay**: Before sending, enter the delay in seconds between messages. A blank value or `0` sends messages without an additional delay.
   
 ## Contributing
 Contributions are welcome! Feel free to submit a pull request or open an issue if you have suggestions or improvements.
 
 ## License
 This project is licensed under the [MIT License](./LICENSE).
-
 
 
 

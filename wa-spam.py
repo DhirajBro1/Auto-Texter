@@ -57,6 +57,7 @@ Main Menu """ + Style.RESET_ALL + Fore.BLUE + """
             - [N] How many times would you like to send these messages?
             - [0] Enter 0 to quit and exit tool.
             - [+] Enter Number of Times (Default: 1) -> 
+            - [+] Enter delay between messages in seconds (Default: 0) ->
 
 
     - After inputting the required details, move your cursor to the message box in WhatsApp and prepare to send the messages.
@@ -96,6 +97,7 @@ Then you will be returned to the main menu to choose the next task or quit.
                     -The message looks like [Message 1]
                 - [0] Enter 0 to quit and exit tool.
                 - [+] Enter Your Message (Default: ERROR) -> 
+            - [+] Enter delay between messages in seconds (Default: 0) ->
 Prepare to send messages as per the instructions provided. """ + Style.RESET_ALL + Fore.LIGHTYELLOW_EX + """
 
 
@@ -120,11 +122,33 @@ Prepare to send messages as per the instructions provided. """ + Style.RESET_ALL
                 - [N] How many words can each message contain?
                 - [0] Enter 0 to quit and exit tool.
                 - [+] Enter Length of Message (Default: 1 Word) -> 
+            - [+] Enter delay between messages in seconds (Default: 0) ->
 For all auto-typed options, you will be prompted to prepare WhatsApp for sending messages, with a 10-second alert.
 
 
 """ + Style.RESET_ALL)
     spammer()
+
+
+def get_message_delay():
+    """Ask for the pause, in seconds, between messages."""
+    while True:
+        delay = input(
+            Fore.GREEN + Style.BRIGHT
+            + "[+] Enter delay between messages in seconds (Default 0) ->  "
+            + Style.RESET_ALL
+        ).strip()
+        if delay == "":
+            return 0.0
+        try:
+            delay = float(delay)
+        except ValueError:
+            print(Fore.RED + "Invalid delay. Enter a non-negative number.\n" + Style.RESET_ALL)
+            continue
+        if delay < 0:
+            print(Fore.RED + "Delay cannot be negative.\n" + Style.RESET_ALL)
+            continue
+        return delay
 
 
 # User is able to type a message and send what they want
@@ -175,6 +199,8 @@ def user_typed_message():
             print(Fore.RED + "Invalid value entered. Please choose a valid number.\n" + Style.RESET_ALL, end="")
             time.sleep(1.5)
             user_typed_message()
+
+    message_delay = get_message_delay()
     
     # Show warning
     print(Fore.RED + "\nNow open the WhatsApp tab and move the cursor to the message box where you can type your message.\n" + Style.RESET_ALL, end="")
@@ -186,15 +212,18 @@ def user_typed_message():
         print(Fore.RED + "[ALERT!!!] Now you have only 10 seconds to move the cursor on message box tab.\n" + Style.RESET_ALL, end="")
         # Wait for 10 second to move message box tab
         time.sleep(10)
-        start_smg = 0
-        while start_smg < number_of_smg:
-            start_smg += 1
+        total_messages = number_of_smg * len(list_of_smg)
+        sent_messages = 0
+        while sent_messages < total_messages:
             for message in list_of_smg:
                 # write a messages
                 pyautogui.write(message)
                 # send a messages
                 pyautogui.press('enter')
                 print("Message Sended...")
+                sent_messages += 1
+                if sent_messages < total_messages:
+                    time.sleep(message_delay)
         # Show message after Task is completed and Ask What is next task
         print(Fore.GREEN + Style.BRIGHT + "The given task has been completed.\n\n"+ Style.RESET_ALL)
         print(Fore.BLUE + Style.BRIGHT + "What is the next task?\nIf there are no more tasks, you can quit or exit the tool by using '0'."+ Style.RESET_ALL)
@@ -238,6 +267,8 @@ def message_with_counting():
     elif message == "0":
         exit_from_tool() # exit from code
 
+    message_delay = get_message_delay()
+
     # Show warning
     print(Fore.RED + "\nNow open the WhatsApp tab and move the cursor to the message box where you can type your message.\n" + Style.RESET_ALL, end="")
     # Check user is ready
@@ -249,12 +280,13 @@ def message_with_counting():
         # Wait for 10 second to move message box tab
         time.sleep(10)
         for no_of_message in range(no_of_messages):
-            no_of_message += 1
             # write a messages
-            pyautogui.write(message + " " + str(no_of_message))
+            pyautogui.write(message + " " + str(no_of_message + 1))
             # send a messages
             pyautogui.press('enter')
             print("Message Sended...")
+            if no_of_message < no_of_messages - 1:
+                time.sleep(message_delay)
         # Show message after Task is completed and Ask What is next task
         print(Fore.GREEN + Style.BRIGHT + "The given task has been completed.\n\n"+ Style.RESET_ALL)
         print(Fore.BLUE + Style.BRIGHT + "What is the next task?\nIf there are no more tasks, you can quit or exit the tool by using '0'."+ Style.RESET_ALL)
@@ -319,6 +351,8 @@ def random_message_generator():
             # Recall random_message_generator if user enter wrong value
             random_message_generator()
 
+    message_delay = get_message_delay()
+
     # Show warning
     print(Fore.RED + "\nNow open the WhatsApp tab and move the cursor to the message box where you can type your message.\n" + Style.RESET_ALL, end="")
     # Check user is ready
@@ -329,7 +363,7 @@ def random_message_generator():
         print(Fore.RED + "[ALERT!!!] Now you have only 10 seconds to move the cursor on message box tab.\n" + Style.RESET_ALL, end="")
         # Wait for 10 second to move message box tab
         time.sleep(10)
-        for _ in range(no_of_message):
+        for message_index in range(no_of_message):
             # Initialize sentence for add random words and create a sentence
             sentence = ""
             # punctuation marks for add to the end of sentence
@@ -347,6 +381,8 @@ def random_message_generator():
             # send a messages
             pyautogui.press('enter')
             print("Message Sended...")
+            if message_index < no_of_message - 1:
+                time.sleep(message_delay)
         # Show message after Task is completed and Ask What is next task
         print(Fore.GREEN + Style.BRIGHT + "The given task has been completed.\n\n"+ Style.RESET_ALL)
         print(Fore.BLUE + Style.BRIGHT + "What is the next task?\nIf there are no more tasks, you can quit or exit the tool by using '0'."+ Style.RESET_ALL)
@@ -398,6 +434,8 @@ def meaningless_message_generator():
             # Recall meaningless_message_generator if user enter wrong value
             meaningless_message_generator()
 
+    message_delay = get_message_delay()
+
     # Show warning
     print(Fore.RED + "\nNow open the WhatsApp tab and move the cursor to the message box where you can type your message.\n" + Style.RESET_ALL, end="")
     # Check user is ready
@@ -408,7 +446,7 @@ def meaningless_message_generator():
         print(Fore.RED + "[ALERT!!!] Now you have only 10 seconds to move the cursor on message box tab.\n" + Style.RESET_ALL, end="")
         # Wait for 10 second to move message box tab
         time.sleep(10)
-        for _ in range(no_of_message):
+        for message_index in range(no_of_message):
             # Initialize sentence for add random words and create a sentence
             sentence = ""
             # punctuation marks for add to the end of sentence
@@ -427,6 +465,8 @@ def meaningless_message_generator():
             # send a messages
             pyautogui.press('enter')
             print("Message Sended...")
+            if message_index < no_of_message - 1:
+                time.sleep(message_delay)
         # Show message after Task is completed and Ask What is next task
         print(Fore.GREEN + Style.BRIGHT + "The given task has been completed.\n\n"+ Style.RESET_ALL)
         print(Fore.BLUE + Style.BRIGHT + "What is the next task?\nIf there are no more tasks, you can quit or exit the tool by using '0'."+ Style.RESET_ALL)
