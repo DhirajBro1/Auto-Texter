@@ -99,12 +99,12 @@ Auto-Spam displays its interface in the terminal. The startup banner looks
 like this:
 
 ```text
- __        ___        ____
- \ \      / / \      / ___| _ __   __ _ _ __ ___
-  \ \ /\ / / _ \ ____\___ \| '_ \ / _` | '_ ` _ \
-   \ V  V / ___ \_____|__) | |_) | (_| | | | | | |
-    \_/\_/_/   \_\   |____/| .__/ \__,_|_| |_| |_|
-                           |_|
+    _         _             ____
+   / \  _   _| |_ ___      / ___| _ __   __ _ _ __ ___
+  / _ \| | | | __/ _ \ ____\___ \| '_ \ / _` | '_ ` _ \
+ / ___ \ |_| | || (_) |_____|__) | |_) | (_| | | | | | |
+/_/   \_\__,_|\__\___/     |____/| .__/ \__,_|_| |_| |_|
+                                 |_|
 ```
 
 The main menu lets you choose user-entered messages, automatically generated
