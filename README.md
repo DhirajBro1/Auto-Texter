@@ -29,7 +29,51 @@ Clone the repository and install its dependencies:
 ```bash
 git clone https://github.com/dhirajbro1/Auto-Texter.git
 cd Auto-Texter
+```
+
+### Create and activate a virtual environment
+
+Using a virtual environment keeps this project's packages separate from your
+system Python installation.
+
+**Linux/macOS:**
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+```
+
+**Windows PowerShell:**
+
+```powershell
+py -m venv .venv
+.venv\Scripts\Activate.ps1
+```
+
+**Windows Command Prompt:**
+
+```bat
+py -m venv .venv
+.venv\Scripts\activate.bat
+```
+
+After activation, install the dependencies:
+
+```bash
 pip install -r requirements.txt
+```
+
+To leave the virtual environment later, run:
+
+```bash
+deactivate
+```
+
+If PowerShell blocks activation, allow local scripts for your user and try
+again:
+
+```powershell
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 ```
 
 ## Usage
@@ -47,6 +91,32 @@ The main menu contains:
 [2] Auto typed message
 [4] Help
 [0] Quit
+```
+
+### Terminal interface
+
+Auto-Spam displays its interface in the terminal. The startup banner looks
+like this:
+
+```text
+ __        ___        ____
+ \ \      / / \      / ___| _ __   __ _ _ __ ___
+  \ \ /\ / / _ \ ____\___ \| '_ \ / _` | '_ ` _ \
+   \ V  V / ___ \_____|__) | |_) | (_| | | | | | |
+    \_/\_/_/   \_\   |____/| .__/ \__,_|_| |_| |_|
+                           |_|
+```
+
+The main menu lets you choose user-entered messages, automatically generated
+messages, the help screen, or quit:
+
+```text
+Choose an option from the following:
+[1] User typed message
+[2] Auto typed message
+[4] Help
+[0] Quit
+[+] Enter Option ->
 ```
 
 ### User typed message
