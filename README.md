@@ -1,107 +1,114 @@
-﻿# WhatsApp-Spammer
+# Auto-Spam
 
-# WA-Spam
+Auto-Spam is a terminal-based Python tool that types and sends messages in
+WhatsApp using keyboard automation.
 
-## Description
+> **Disclaimer:** Use this project only for messages that you are authorized to
+> send. Do not use it to harass, abuse, or send unsolicited messages.
 
-**WA-Spam** is a Python-based tool designed to send spam messages on WhatsApp. It provides a terminal-based interface for choosing between sending user-typed messages or auto-generated messages. The script allows flexible options for message spamming with features like random message generation, counting, and more.
+## Features
 
-![WA Spam GIF](https://private-user-images.githubusercontent.com/165555259/494858596-a9075e62-61b8-43e8-848c-b72dabfdf696.gif?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NjY4NjQwMzYsIm5iZiI6MTc2Njg2MzczNiwicGF0aCI6Ii8xNjU1NTUyNTkvNDk0ODU4NTk2LWE5MDc1ZTYyLTYxYjgtNDNlOC04NDhjLWI3MmRhYmZkZjY5Ni5naWY_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjUxMjI3JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MTIyN1QxOTI4NTZaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT05ZjIzMTdlMDM2YTIyZDU3OWM4OTU2OWU0Mjg2ZWQ5MmI0ODBjNzMwYTk3ZGJhYzQ0NWJhOTIwZjlmMTdjNTdiJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.ig2oJULcrA4JLwMOt0OlcQkM4bbPM4llID0X4e-wycY)
+- Send one or more user-provided messages repeatedly.
+- Send numbered messages, such as `Hello 1`, `Hello 2`, and `Hello 3`.
+- Generate messages from random words.
+- Generate meaningless messages from random characters.
+- Set a delay in seconds between message batches.
+- Move the cursor to WhatsApp manually before sending starts.
 
-> ⚠️ **Disclaimer**: This tool is for educational purposes only. Spamming others without their consent is illegal and unethical. Use responsibly and respect others' privacy.
+## Requirements
+
+- Python 3.x
+- WhatsApp Web or the WhatsApp desktop application
+- A working keyboard and mouse
+- Python packages listed in [requirements.txt](./requirements.txt)
 
 ## Installation
 
-To set up **WA-Spam**, follow these steps:
-
-### Clone the Repository
-```bash
-git clone https://github.com/sh1vam-03/WhatsApp-Spammer.git
-
-cd WhatsApp-Spammer
-```
-
-### Install Modules
-
-Ensure you have Python 3.x installed. Install the required Modules from `requirements.txt`:
+Clone the repository and install its dependencies:
 
 ```bash
+git clone https://github.com/dhirajbro1/Auto-Texter.git
+cd Auto-Texter
 pip install -r requirements.txt
 ```
 
-### Requirements
-
-- Python 3.x
-- The required modules listed in `requirements.txt`
-
 ## Usage
 
-After installing the required packages, you can run the tool as follows:
+Start the tool with:
 
 ```bash
-python wa-spam.py
+python auto-spam.py
 ```
 
-### Terminal Interface
+The main menu contains:
 
-Once you run the tool, you'll be presented with the following options:
-
-```
- __        ___        ____
- \ \      / / \      / ___| _ __   __ _ _ __ ___  
-  \ \ /\ / / _ \ ____\___ \| '_ \ / _` | '_ ` _ \ 
-   \ V  V / ___ \_____|__) | |_) | (_| | | | | | |
-    \_/\_/_/   \_\   |____/| .__/ \__,_|_| |_| |_|
-                           |_|   
-                                        -sh1vam-03
-```
-
-#### Main Menu:
-```
-Choose an option from the following:
+```text
 [1] User typed message
 [2] Auto typed message
+[4] Help
 [0] Quit
-[+] Enter Option -> 1
 ```
 
-#### User Typed Message (Option 1):
-```
-[*] User typed message <SELECTED>
-[N] How many messages do you have?
-[0] Enter 0 to quit and exit tool.
-[+] Enter Number of Messages (Default: 1) -> 
+### User typed message
+
+Choose option `1` to:
+
+1. Enter the messages that should be sent.
+2. Enter how many times the complete message list should be repeated.
+3. Enter a delay in seconds.
+4. Open WhatsApp and place the cursor in the message box.
+5. Press Enter or choose `1` when ready.
+
+For example, with these messages:
+
+```text
+owo h
+owo b
 ```
 
-#### Auto Typed Message (Option 2):
+and a repeat count of `3`, the tool sends:
+
+```text
+owo h
+owo b
+<delay>
+owo h
+owo b
+<delay>
+owo h
+owo b
 ```
-[*] Auto typed message <SELECTED>
-Choose an option from the following:
+
+The delay is applied only after the complete list of messages has been sent.
+Messages in the same list are sent consecutively. A blank delay or `0` sends
+the batches without an additional pause.
+
+### Auto typed message
+
+Choose option `2`, then select one of these modes:
+
+```text
 [1] Message with counting
 [2] Random Message Generator
 [3] Meaningless Message Generator
 [0] Quit
-[+] Enter Option -> 
 ```
 
-### Features
+Each mode asks for its message count or message size, followed by the delay
+between messages. The tool then gives you 10 seconds to place the cursor in
+the WhatsApp message box.
 
-- **User-Typed Message**: Allow to user type some messages manually and tool mechanism send these messages repeatedly.
-- **Auto-Typed Message**: Offers different automated message-sending options:
-  - **Message with Counting**: Sends messages with a counting mechanism (e.g., "Message 1", "Message 2").
-  - **Random Message Generator**: Sends randomly generated words of sentence as message.
-  - **Meaningless Message Generator**: Sends random, nonsensical words of sentence as message.
-- **Message Delay**: Before sending, enter the delay in seconds between messages. A blank value or `0` sends messages without an additional delay.
-  
+### Stopping or cancelling
+
+- Enter `0` at an available quit prompt to exit.
+- Choose `0` at the ready prompt to cancel before sending.
+- Keep the WhatsApp message box focused while the tool is running.
+
 ## Contributing
-Contributions are welcome! Feel free to submit a pull request or open an issue if you have suggestions or improvements.
+
+Bug reports and improvements are welcome. Please keep changes focused and
+update this README when the command-line interface changes.
 
 ## License
+
 This project is licensed under the [MIT License](./LICENSE).
-
-
-
-
-
-
-

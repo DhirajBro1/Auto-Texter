@@ -212,18 +212,15 @@ def user_typed_message():
         print(Fore.RED + "[ALERT!!!] Now you have only 10 seconds to move the cursor on message box tab.\n" + Style.RESET_ALL, end="")
         # Wait for 10 second to move message box tab
         time.sleep(10)
-        total_messages = number_of_smg * len(list_of_smg)
-        sent_messages = 0
-        while sent_messages < total_messages:
+        for batch_index in range(number_of_smg):
             for message in list_of_smg:
                 # write a messages
                 pyautogui.write(message)
                 # send a messages
                 pyautogui.press('enter')
                 print("Message Sended...")
-                sent_messages += 1
-                if sent_messages < total_messages:
-                    time.sleep(message_delay)
+            if batch_index < number_of_smg - 1:
+                time.sleep(message_delay)
         # Show message after Task is completed and Ask What is next task
         print(Fore.GREEN + Style.BRIGHT + "The given task has been completed.\n\n"+ Style.RESET_ALL)
         print(Fore.BLUE + Style.BRIGHT + "What is the next task?\nIf there are no more tasks, you can quit or exit the tool by using '0'."+ Style.RESET_ALL)
@@ -564,7 +561,7 @@ def exit_from_tool():
 
 
 # Tool name designe
-name_of_tool = pyfiglet.figlet_format("WA-Spam")
+name_of_tool = pyfiglet.figlet_format("auto-spam")
 
 # List of colors
 colors = ["red", "green", "blue", "yellow", "cyan", "magenta", "bold red", "light_green", "blue", "bold yellow", "bold cyan", "bold magenta"]
@@ -576,7 +573,7 @@ random_color = random.choice(colors)
 name_of_tool_color = Console()
 
 name_of_tool_color.print(name_of_tool, style=random_color, end="\t\t\t\t\t-")
-print(Fore.GREEN + Style.BRIGHT + 'sh1vam-03'+ Style.RESET_ALL)
+print(Fore.GREEN + Style.BRIGHT + 'dhirajbro1'+ Style.RESET_ALL)
 
 # Start tool
 spammer()
